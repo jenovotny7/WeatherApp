@@ -77,9 +77,7 @@ var pullDailyWeather = function(cityDaily) {
 
 var showCurrent = function(city, uv) {
     todayWeatherEl.innerHTML = "";
-    //get date for city 
     var today = moment.unix(city.dt).format("(M/DD/YYYY)");
-    //display city name and current date
     var cityTitleEl = document.createElement("h5");
     cityTitleEl.classList = "card-title";
     cityTitleEl.innerHTML = `${city.name} ${today} <img src="https://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png">`;
@@ -106,13 +104,13 @@ var showCurrent = function(city, uv) {
     var uvBadge = document.createElement("span");
     uvBadge.innerHTML = uv.value;
     uvEl.appendChild(uvBadge);
-    if (uv.value < 3) {
+    if (uv.value < 2) {
         uvBadge.classList = "badge bg-danger";
     }
-    else if (uv.value >= 3 && uv.value < 7) {
+    else if (uv.value >= 2 && uv.value < 8) {
         uvBadge.classList = "badge bg-success";
     }
-    else if (uv.value >= 7) {
+    else if (uv.value >= 9) {
         uvBadge.classList = "badge bg-primary";
     };
     todayWeatherEl.appendChild(uvEl);
@@ -125,13 +123,13 @@ var showDaily = function(dailyWeather) {
     dailyContainer.innerHTML = "";
     for (i=0; i < 5; i++) {
         var date = moment.unix(dailyWeather.daily[i].dt).format("(M/DD/YYYY)");
-        var icon = `https://openweathermap.org/img/wn/${dailyWeather.daily[i].weather[0].icon}@2x.png`
+        var image = `https://openweathermap.org/img/wn/${dailyWeather.daily[i].weather[0].icon}@2x.png`
         var cardContainer = document.createElement("div");
-        cardContainer.classList = "card col mx-3 bg-primary text-white";
+        cardContainer.classList = "card col mx-4 bg-danger text-white";
         dailyContainer.appendChild(cardContainer);
         var cardBody = document.createElement("div");
         cardBody.classList = "card-body";
-        cardBody.innerHTML = `<h4 class="card-title">${date}</h4><img src="${icon}"><p>Temp: ${dailyWeather.daily[i].temp.day} &deg;F</p><p>Humidity: ${dailyWeather.daily[i].humidity}%</p>`;
+        cardBody.innerHTML = `<h4 class="card-title">${date}</h4><img src="${image}"><p>Temp: ${dailyWeather.daily[i].temp.day} &deg;F</p><p>Humidity: ${dailyWeather.daily[i].humidity}%</p>`;
         cardContainer.appendChild(cardBody);
     };
 }; 
@@ -147,9 +145,7 @@ var newHistory = function(city) {
         historyEl.classList = "list-group-item";
         historyEl.innerHTML = city;
         historyContainer.appendChild(historyEl);
-        //add list item to history array
-        histList.push(city);
-        //save history
+        cityList.push(city);
         localStorage.setItem("historyList", JSON.stringify(cityList));
     }
 };   
@@ -159,9 +155,9 @@ var uploadHistory = function() {
         return;
     }
     else {
-        var hist = localStorage.getItem("historyList");
-        hist = JSON.parse(hist);
-        cityList = hist;
+        var history = localStorage.getItem("historyList");
+        history = JSON.parse(history);
+        cityList = history;
         for (i = 0; i < cityList.length; i++) {
             var historyEl = document.createElement("li");
             historyEl.classList = "list-group-item";
@@ -176,7 +172,7 @@ var uploadHistory = function() {
 
 
 
-
+// Event Listener functions 
 searchBoxEl.addEventListener("submit", searchSubmitHandler);
 historyContainer.addEventListener("click", previousSubmitted);
 

@@ -1,5 +1,5 @@
 header {
-    height: 90px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,8 +11,8 @@ header {
 }
 
 h2 {
-    background-color: red;
-    color: white;
+    background-color: whitesmoke;
+    color: red;
 
 
 }
@@ -29,6 +29,7 @@ h5 {
 
 .main-display p {
     font-size: 2rem;
+    font-style: oblique;
 }
 
    
