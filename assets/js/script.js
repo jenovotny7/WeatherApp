@@ -13,11 +13,11 @@ var searchSubmitHandler = function(event) {
     retrieveWeather(cityEntered);
 };
 
-//Main Search List function 
+//Main  pull weather from already seacrhed city function 
 var previousSubmitted = function(event) {
-    var targetEl = event.target;
-    if (targetEl.matches(".list-group-item")) {
-        var cityName = targetEl.textContent;
+    var cityEntered = event.target;
+    if (cityEntered.matches(".list-group-item")) {
+        var cityName = cityEntered.textContent;
         retrieveWeather(cityName);
     }
 };
