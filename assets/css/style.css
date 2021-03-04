@@ -1,0 +1,35 @@
+header {
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-display h2 {
+    font-size: 3rem;
+    
+}
+
+h2 {
+    background-color: red;
+    color: white;
+
+
+}
+
+
+h5 {
+    color: black;
+    font-style: italic;
+
+
+}
+
+
+
+.main-display p {
+    font-size: 2rem;
+}
+
+   
+
